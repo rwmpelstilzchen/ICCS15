@@ -6,6 +6,7 @@ admin/
 *.jpeg
 *.tif
 *.gif
+*.eps
 *.xcf*
 comment.cut
 *.url
