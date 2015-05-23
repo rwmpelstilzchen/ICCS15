@@ -1,0 +1,26 @@
+\def\contentsname{Structure}
+\renewcommand{\contentspage}{} %%% uncomment if a ‘pageless’ TOC is wanted
+{\setstretch{0.1}
+\setlength\parskip{\smallskipamount}
+
+\titlecontents{section} 
+	[1.5cm] 
+	{}
+	{\LR{\contentslabel{1cm}}} 
+	{}
+	{\hfill\contentspage}
+\titlecontents{subsection} 
+	[2.5cm] 
+	{}
+	{\LR{\contentslabel{1cm}}} 
+	{} 
+	{\hfill\contentspage}
+\titlecontents{subsubsection} 
+	[3.5cm] 
+	{}
+	{\LR{\contentslabel{1cm}}} 
+	{} 
+	{\hfill\contentspage}
+
+	\tableofcontents
+}

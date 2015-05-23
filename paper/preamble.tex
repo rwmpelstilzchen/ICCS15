@@ -1,0 +1,226 @@
+\documentclass[a5paper, twoside]{article}
+\usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm]{geometry}
+
+\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, marginnote, rotating, needspace, titletoc, enumerate}
+\usepackage[authorformat=year, authorformat=smallcaps, oxford=true, ibidem=nostrict,
+bibformat=numbered,
+bibformat=ibidem]{jurabib}
+%\jurabibsetup{%
+%	bibformat={ibidem, numbered}
+%}
+\setlength{\jbbibhang}{4em}
+
+
+\renewcommand{\textsc}[1]{{\fontspec{TeX Gyre Pagella}\scshape#1}}
+\newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
+
+\usepackage{comment, framed}
+\specialcomment{paper}{\begin{leftbar}}{\end{leftbar}}
+%\excludecomment{paper}
+\specialcomment{extra}{\fontsize{8}{8}\fontspec{Gentium Basic}}{\fontsize{10}{10}\fontspec{Gentium Basic}}
+
+%\hyphenpenalty=5000
+\tolerance=99999
+\widowpenalty=1000
+\clubpenalty=1000
+
+\setlength\parskip{\medskipamount}
+\setlength\parindent{0pt}
+
+\IfFileExists{url.sty}{\usepackage{url}}
+{\newcommand{\url}{\texttt}}
+
+\newcommand{\zero}{{\fontspec{Apple Symbols}∅}}
+
+\newcommand{\nosic}{}
+
+%\newcommand{\C}[1]{{\fontsize{11}{11}\fontspec[Language=Welsh]{Junicode}{#1}}}
+%\newcommand{\C}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Optima}{#1}}}
+%\newcommand{\C}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}\textit{#1}}}
+\newcommand{\C}[1]{{\fontspec{Palemonas MUFI}\textit{#1}}}
+\newcommand{\Cpar}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}#1}}
+\newcommand{\BHtr}[1]{{\fontspec[HyphenChar=None]{Gentium}\textit{#1}}}
+\newcommand{\slot}[1]{{{\textsc{#1}}}}
+\newcommand{\trans}[1]{{\LR{\fontspec{TeX Gyre Pagella}\textit{#1}}}}
+
+\usepackage[nooverlap, latin]{ruby}
+\renewcommand{\rubysize}{0.75}
+%\renewcommand{\rubysep}{-1cm}
+%\renewcommand{\rubysep}{-0.9cm}
+\renewcommand{\ruby}[2]{#1}
+
+%\newcommand{\gl}[2]{\ruby{#1}{\fontspec{Gill Sans Light}\mdseries\upshape #2\,}}
+\newcommand{\gl}[2]{#1}
+\newcommand{\Hebrew}[1]{{\RL{\fontspec[Script=Hebrew]{Guttman Hodes}#1}}}
+\newcommand{\gram}[1]{{\fontspec{TeX Gyre Pagella}\textsc{#1}}}
+
+%\newcommand{\appmargin}[1]{\marginpar{\vskip-0.5em\R{\begin{flushright}
+%
+%	{\scriptsize #1}\end{flushright}}}}
+\newcommand{\appmargin}[1]{}
+
+\newcommand{\Chl}[1]{\highlight{#1}}
+\newcommand{\BHhl}[1]{\BHhighlight{#1}}
+\newcommand{\highlight}[1]{{{\underline{#1}}}}
+\newcommand{\BHhighlight}[1]{{{\underline{#1}}}}
+\newcommand{\hl}[1]{\textbf{#1}}
+%\newcommand{\quo}[1]{{\fontsize{8}{8}\textit{#1}}}
+\newcommand{\quo}[1]{{\textit{#1}}}
+\newcommand{\secu}[1]{\textbf{#1}}
+%\newcommand{\highlight}[1]{{\addfontfeature{Color=600000FF}{#1}}}
+%\renewcommand{\emph}[1]{\textbf{#1}}
+\newcommand{\IPA}[1]{{\fontspec{Gentium}#1}}
+
+%\clubpenalty=300
+%\widowpenalty=300
+%\widowpenalty=10000
+%\clubpenalty=10000
+%\raggedbottom
+
+%\newcommand{\patternlimit}{{\fontspec{Apple Symbols}◇}}
+\newcommand{\patternlimit}{{\fontspec{Apple Symbols}}}
+\newcommand{\pattern}[1]{\patternlimit~{#1}~\patternlimit}
+
+\newcommand{\pA}{A}
+\newcommand{\pB}{B}
+\newcommand{\pC}{C}
+\newcommand{\Aplus}{\mbox{\pA{$+$}}}
+\newcommand{\Aminus}{\mbox{\pA{$-$}}}
+
+
+
+%%% Paper-specific %%%
+
+\newcommand{\llyfr}[1] {%
+	\textsc{
+	\ifthenelse{\equal{#1}{1}}{Gen}{%
+	\ifthenelse{\equal{#1}{2}}{Ex}{%
+	\ifthenelse{\equal{#1}{3}}{Lev}{%
+	\ifthenelse{\equal{#1}{4}}{Num}{%
+	\ifthenelse{\equal{#1}{5}}{Deu}{#1}}}}}}.%
+}
+%\newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}\marginnote{\setstretch{0.75}\begin{tabular}{c}\llyfr{1}~#2:#3\\עמ'~\pageref{verse:#1:#2:#3:#4}\end{tabular}}}
+\newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}}
+\newcommand{\xvref}[4]{***} % references for yet to be written exx
+\newcommand{\secref}[1]{\mbox{\LR{{\fontspec{SBL Hebrew}§}\LR{\ref{#1}}}}}
+\newcommand{\sic}{\ {(\textit{sic})}}
+\newcommand{\bcite}[3]{\llyfr{#1}~#2:#3}
+
+%%% Examples %%%
+%\edef\marginnotetextwidth{1cm}
+\newcounter{exampleno}
+\setcounter{exampleno}{0}
+\newenvironment{bareexample}[1] {
+	%\begin{changemargin}{3.0cm}{0cm}
+	\needspace{12\baselineskip}\refstepcounter{exampleno}
+		%\ifthenelse{\isodd{\thepage}}
+		%	{\marginnote{\begin{tabular}{ll}\framebox{\arabic{exampleno}}&#1\end{tabular}}[-0.6em]}
+		%	{\marginnote{\begin{tabular}{ll}#1&\framebox{\arabic{exampleno}}\end{tabular}}[-0.6em]}
+		{\marginnote{\small\centering\framebox{\arabic{exampleno}}\\[0.20cm]#1}[0.6em]}
+	}
+	{
+	%\end{changemargin}
+	}
+
+\newenvironment{example}[5] % #1=book, #2=chapter, #3=verse, #4=copy (of the same verse; different copies have different hightlighting), #5=shift (of verse number)
+	{
+	\setstretch{0.51}
+	\vspace{1em}
+	\begin{bareexample}
+		{{
+			{
+			\setstretch{0.75}
+			{\llyfr{#1}}\\
+			\LR{{#2}{:}%
+			{#3}}%
+%			\ifthenelse{\not\equal{#4}{}}{{\small .#4}}{}%
+			\ifthenelse{\not\equal{#5}{}}{*}{}
+			}
+			}}\label{verse:#1:#2:#3:#4}
+		\begin{longtable}{p{0.46\linewidth}p{0.46\linewidth}}
+	}
+	{
+		\end{longtable}
+		\end{bareexample}
+		\vspace{-1em}
+	}
+\newcommand{\explain}{\noindent$\rightarrow$\ }
+
+\newenvironment{bilingquote}[0]
+	{\begin{longtable}{p{0.46\linewidth}p{0.46\linewidth}}}
+	{\end{longtable}}
+
+	\newcommand{\Lcol}[1]{{\setLR{\vskip-2em}\C{%
+	%\addfontfeature{HyphenChar="2E17}%ADDME WHEN PRINTING***
+	#1}}}
+\newcommand{\Rcol}[1]{{\setRL{\vskip-2em}\BH{#1}}}
+\newcommand{\transline}[2]
+%	{{\Lcol{#1}\vspace{0.0em}} &
+%	{{\Rcol{#2}}\vspace{0.0em}}\\}
+	{#1 & #2\\}
+\newcommand{\cotransline}[2]{\transline{\scriptsize#1}{\scriptsize#2}}
+\newcommand{\quoling}[4]% Hebrew (Tiberean), Cymraeg, Hebrew (Latin transcription), KJV
+{
+%\begin{bilingquote}
+	\transline{{\fontspec[HyphenChar=None]{Junicode}#2}}{\fontspec[HyphenChar=None]{Gentium}#3}\\
+	\transline{{\small\fontspec{Gentium}#4}}{\vspace{-0.9em}\begin{RTL}{\BH{\small#1}}\end{RTL}}
+%\end{bilingquote}
+}
+
+
+\newcounter{pointno}
+\setcounter{pointno}{1}
+%\reversemarginpar
+\renewcommand*{\raggedleftmarginnote}{\raggedleft}
+\newcommand{\hopoint}{\marginnote{\ovalbox{\Roman{pointno}}}\stepcounter{pointno}}
+
+\newenvironment{changemargin}[2]{%
+ \begin{list}{}{%
+  \setlength{\topsep}{0pt}%
+  \setlength{\leftmargin}{#1}%
+  \setlength{\rightmargin}{#2}%
+  \setlength{\listparindent}{\parindent}%
+  \setlength{\itemindent}{\parindent}%
+  \setlength{\parsep}{\parskip}%
+ }%
+\item[]}{\end{list}}
+
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}
+	{3ex plus1ex minus1ex}%
+	{\smallskipamount}{\fontspec{Gentium}\Large}}%
+\renewcommand{\subsection}{\@startsection{subsection}{1}{0mm}
+	{3ex plus1ex minus1ex}%
+	{\smallskipamount}{\fontspec{Gentium}\large}}%
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{1}{0mm}
+	{3ex plus1ex minus1ex}%
+	{\smallskipamount}{\fontspec{Gentium}}}%
+\makeatother
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.pathmorphing, backgrounds, positioning, fit, petri}
+
+\newcommand{\paradigma}[1]{\begin{tabular}{|c|}#1\end{tabular}}
+
+\newcommand{\shama}{{\fontspec[HyphenChar=None]{Gentium}\textit{{šåmaʿ}}}}
+\newcommand{\YHWH}{{\fontspec[HyphenChar=None]{Gentium}\textsc{{yhwh}}}}
+\newcommand{\LORD}{{\textsc{\mbox{lord}}}}
+\newcommand{\click}{{\fontspec{FreeSerif}✴}}
+\newcommand{\point}[1]{[\textit{#1}]}
+\newcommand{\optout}[1]{{\small [{#1}]}}
+
+
+\usepackage{fontspec, bidi}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont[Language=English]{Gentium Book Basic}
+\setmonofont{LMTypewriter10 Regular}
+\newcommand{\BH}[1]{\RL{\fontspec[SmallCapsFont=SBL Hebrew, Script=Hebrew]{SBL Hebrew}#1}}
+
+\newcommand{\tounfold}[1]{{\addfontfeature{Color=0000FFFF}\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}~\BH{#1}~\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}}}
+
+\newcommand{\symbolglyph}[1]{{\fontspec{Symbola}#1}}
+\newcommand{\symbolglyphalt}[1]{{\fontspec{DejaVu Serif}#1}}
+
+\usepackage{newunicodechar}
+\newunicodechar{ſ}{s}
+\newunicodechar{ꝛ}{r}
