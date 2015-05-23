@@ -15,9 +15,10 @@
 %\setbeamerfont{frametitle}{size=\small}
 \usetheme{Berkeley}
 %\usecolortheme{beetle}
-\usecolortheme{dove}
+\usecolortheme{seahorse}
 \usecolortheme{sidebartab}
-%\setbeamertemplate{section in sidebar}[default][20]
+\setbeamercolor*{structure}{fg=violet}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
 \setbeamerfont{section in sidebar}{size=\scriptsize}
 \setbeamerfont{subsection in sidebar}{size=\tiny}
 \setbeamerfont{subsubsection in sidebar}{size=\tiny}
@@ -29,7 +30,7 @@
 \setbeamercolor*{palette sidebar primary}{fg=black}
 %\setbeamercolor{background canvas}{bg=white}
 \usepackage{textpos} 
-\logo{\vspace{0.2cm}\hspace{-0.25cm}\includegraphics[width=2cm]{draig.png}}
+\logo{\vspace{0.2cm}\hspace{-0.25cm}\includegraphics[width=2cm]{images/draig.png}}
 
 \usepackage{graphics}
 %\definecolor{colquote}{rgb}{0.8,0.85,1} 
@@ -78,15 +79,12 @@
 \renewcommand{\C}[1]{\textit{#1}}
 \newcommand{\BHtr}[1]{{\fontspec[HyphenChar=None]{Gentium}\textit{#1}}}
 
+\newcommand{\tounfold}[1]{{\addfontfeature{Color=0000FFFF}\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}~\BH{#1}~\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}}}
+
+\newcommand{\symbolglyph}[1]{{\fontspec{Symbola}#1}}
+\newcommand{\symbolglyphalt}[1]{{\fontspec{DejaVu Serif}#1}}
+
 \newcommand{\paradigma}[1]{\begin{tabular}{|c|}#1\end{tabular}}
-\newcommand{\gofid}{\C{Gofid}}
-\newcommand{\pisty}{\C{Y~Pistyll}}
-\newcommand{\marwo}{\C{Marwolaeth~Stori}}
-\newcommand{\teyny}{\C{Te~yn~y~Grug}}
-\newcommand{\ymwel}{\C{Ymwelydd~i~De}}
-\newcommand{\dianc}{\C{Dianc~i~Lundain}}
-\newcommand{\dieit}{\C{Dieithrio}}
-\newcommand{\nadol}{\C{Nadolig~y~Cerdyn}}
 \newcommand{\zero}{{\fontspec{Apple Symbols}∅}}
 
 \newcommand{\shama}{{\fontspec{Gentium}\textit{\mbox{šåmaʿ}}}}
@@ -136,8 +134,9 @@
 	{
 	}
 
-
+\newcommand{\hl}[1]{\textbf{#1}}
 \newcommand{\BH}[1]{\RL{\fontspec[Script=Hebrew]{SBL Hebrew}#1}}
+\newcommand{\bh}[1]{{{\it\fontspec{Gentium}#1}}}
 \newcommand{\quoling}[4]% Cymraeg, Hebrew (Latin transcription), KJV, Hebrew (Tiberean)
 {
 \begin{bilingquote}
@@ -158,6 +157,31 @@
 %\renewcommand{\textsc}[1]{{\fontspec{TeX Gyre Pagella}\scshape#1}}
 \newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
 
+\usepackage[style=authoryear, backend=biber, eventdate=comp, backref=true]{biblatex}
+\bibliography{/home/me/library/bibliography/bibliography}
+\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+\makeatletter
+\newrobustcmd*{\parentexttrack}[1]{%
+	\begingroup
+	\blx@blxinit
+	\blx@setsfcodes
+	\blx@bibopenparen#1\blx@bibcloseparen
+\endgroup}
+\AtEveryCite{%
+	\let\parentext=\parentexttrack%
+	\let\bibopenparen=\bibopenparen%
+\let\bibcloseparen=\bibcloseparen}
+\renewbibmacro*{cite}{%
+	\iffieldundef{shorthand}
+	{\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+		{\usebibmacro{cite:label}%
+		\setunit{\addspace}}
+		{\printnames{labelname}%
+		\setunit{\nameyeardelim}}%
+		% \usebibmacro{cite:labelyear+extrayear}}% DELETED
+	\printtext[parens]{\usebibmacro{cite:labelyear+extrayear}}}% ADDED
+{\usebibmacro{cite:shorthand}}}
+\makeatother
 
 \usepackage{bidi}
 
