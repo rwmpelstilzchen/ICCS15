@@ -1,0 +1,9 @@
+\newcommand{\sectionornament}{\hspace{0.5em}{\symbolglyph{\color{faded} ⁘}}\hspace{0.5em}}
+
+\newcommand{\sectionfont}{\normalfont}
+
+\titleformat{\section}{\sectionfont\bfseries\Large\color{darkfaded}}{\textbf{\thesection}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}\vskip2pt\titleline{\color{faded}\titlerule}]
+\titleformat{\subsection}{\sectionfont\bfseries\large\color{darkfaded}}{\textbf{\thesubsection}\sectionornament}{0.0cm}{}[{\titleline{\color{faded}\titlerule}}]
+\titleformat{\subsubsection}{\sectionfont\bfseries\normalsize\color{darkfaded}}{\textbf{\thesubsubsection}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
+
+\newcommand{\subsubsectionoccurances}[2]{\subsubsection[#1]{#1\hfill\faded (#2 occurances)}}

@@ -1,15 +1,7 @@
 \documentclass[a5paper, twoside]{article}
 \usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm]{geometry}
 
-\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, marginnote, rotating, needspace, titletoc, enumerate}
-\usepackage[authorformat=year, authorformat=smallcaps, oxford=true, ibidem=nostrict,
-bibformat=numbered,
-bibformat=ibidem]{jurabib}
-%\jurabibsetup{%
-%	bibformat={ibidem, numbered}
-%}
-\setlength{\jbbibhang}{4em}
-
+\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, marginnote, rotating, needspace, titletoc, enumerate, multicol}
 
 \renewcommand{\textsc}[1]{{\fontspec{TeX Gyre Pagella}\scshape#1}}
 \newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
@@ -37,9 +29,6 @@ bibformat=ibidem]{jurabib}
 %\newcommand{\C}[1]{{\fontsize{11}{11}\fontspec[Language=Welsh]{Junicode}{#1}}}
 %\newcommand{\C}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Optima}{#1}}}
 %\newcommand{\C}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}\textit{#1}}}
-\newcommand{\C}[1]{{\fontspec{Palemonas MUFI}\textit{#1}}}
-\newcommand{\Cpar}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}#1}}
-\newcommand{\BHtr}[1]{{\fontspec[HyphenChar=None]{Gentium}\textit{#1}}}
 \newcommand{\slot}[1]{{{\textsc{#1}}}}
 \newcommand{\trans}[1]{{\LR{\fontspec{TeX Gyre Pagella}\textit{#1}}}}
 
@@ -67,7 +56,6 @@ bibformat=ibidem]{jurabib}
 %\newcommand{\quo}[1]{{\fontsize{8}{8}\textit{#1}}}
 \newcommand{\quo}[1]{{\textit{#1}}}
 \newcommand{\secu}[1]{\textbf{#1}}
-%\newcommand{\highlight}[1]{{\addfontfeature{Color=600000FF}{#1}}}
 %\renewcommand{\emph}[1]{\textbf{#1}}
 \newcommand{\IPA}[1]{{\fontspec{Gentium}#1}}
 
@@ -91,14 +79,7 @@ bibformat=ibidem]{jurabib}
 
 %%% Paper-specific %%%
 
-\newcommand{\llyfr}[1] {%
-	\textsc{
-	\ifthenelse{\equal{#1}{1}}{Gen}{%
-	\ifthenelse{\equal{#1}{2}}{Ex}{%
-	\ifthenelse{\equal{#1}{3}}{Lev}{%
-	\ifthenelse{\equal{#1}{4}}{Num}{%
-	\ifthenelse{\equal{#1}{5}}{Deu}{#1}}}}}}.%
-}
+\newcommand{\llyfr}[1]{\textsc{#1}}
 %\newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}\marginnote{\setstretch{0.75}\begin{tabular}{c}\llyfr{1}~#2:#3\\עמ'~\pageref{verse:#1:#2:#3:#4}\end{tabular}}}
 \newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}}
 \newcommand{\xvref}[4]{***} % references for yet to be written exx
@@ -162,8 +143,8 @@ bibformat=ibidem]{jurabib}
 \newcommand{\quoling}[4]% Hebrew (Tiberean), Cymraeg, Hebrew (Latin transcription), KJV
 {
 %\begin{bilingquote}
-	\transline{{\fontspec[HyphenChar=None]{Junicode}#2}}{\fontspec[HyphenChar=None]{Gentium}#3}\\
-	\transline{{\small\fontspec{Gentium}#4}}{\vspace{-0.9em}\begin{RTL}{\BH{\small#1}}\end{RTL}}
+	\transline{{\fontspec[HyphenChar=None]{Vesper Pro}#2}}{\fontspec[HyphenChar=None]{Gentium}#3}\\
+	\transline{{\small#4}}{\vspace{-0.9em}\begin{RTL}{\BH{\small#1}}\end{RTL}}
 %\end{bilingquote}
 }
 
@@ -210,17 +191,45 @@ bibformat=ibidem]{jurabib}
 \newcommand{\optout}[1]{{\small [{#1}]}}
 
 
-\usepackage{fontspec, bidi}
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Language=English]{Gentium Book Basic}
-\setmonofont{LMTypewriter10 Regular}
-\newcommand{\BH}[1]{\RL{\fontspec[SmallCapsFont=SBL Hebrew, Script=Hebrew]{SBL Hebrew}#1}}
+
+\usepackage[style=authoryear, backend=biber, eventdate=comp]{biblatex}
+\bibliography{/home/me/library/bibliography/bibliography}
+\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+\renewcommand{\subtitlepunct}{:\ }
+\makeatletter
+\newrobustcmd*{\parentexttrack}[1]{%
+	\begingroup
+	\blx@blxinit
+	\blx@setsfcodes
+	\blx@bibopenparen#1\blx@bibcloseparen
+\endgroup}
+\AtEveryCite{%
+	\let\parentext=\parentexttrack%
+	\let\bibopenparen=\bibopenparen%
+\let\bibcloseparen=\bibcloseparen}
+\renewbibmacro*{cite}{%
+	\iffieldundef{shorthand}
+	{\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+		{\usebibmacro{cite:label}%
+		\setunit{\addspace}}
+		{\printnames{labelname}%
+		\setunit{\nameyeardelim}}%
+		% \usebibmacro{cite:labelyear+extrayear}}% DELETED
+	\printtext[parens]{\usebibmacro{cite:labelyear+extrayear}}}% ADDED
+{\usebibmacro{cite:shorthand}}}
+\makeatother
+
+\input{preamble/graphics}
+\input{preamble/title-before-bidi}
+\input{preamble/language}
+\input{preamble/title-after-bidi}
+
+\usepackage[normalem]{ulem}
+\newcommand{\lhl}[1]{\fbox{#1}}
+%\def\reduline{\bgroup \markoverwith{\lower3.5\p@\hbox{\footnotesize{}.}}\ULon}
+\newcommand{\mydotuline}{\bgroup \markoverwith{\lower 1.0ex\hbox{.}}\ULon}
+\newcommand{\hlA}[1]{\underline{#1}}
+\newcommand{\hlB}[1]{\mydotuline{#1}}
+\newcommand{\hlC}[1]{\dashuline{#1}}
 
 \newcommand{\tounfold}[1]{{\addfontfeature{Color=0000FFFF}\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}~\BH{#1}~\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}}}
-
-\newcommand{\symbolglyph}[1]{{\fontspec{Symbola}#1}}
-\newcommand{\symbolglyphalt}[1]{{\fontspec{DejaVu Serif}#1}}
-
-\usepackage{newunicodechar}
-\newunicodechar{ſ}{s}
-\newunicodechar{ꝛ}{r}

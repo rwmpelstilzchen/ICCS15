@@ -1,0 +1,17 @@
+\usepackage{fontspec, bidi}
+\setmainfont{Vesper Pro}
+\setmonofont{PragmataPro}
+
+\newcommand{\symbolglyph}[1]{{\fontspec{Symbola}#1}}
+\newcommand{\symbolglyphalt}[1]{{\fontspec{DejaVu Serif}#1}}
+
+\newcommand{\BH}[1]{\RL{\fontspec[SmallCapsFont=SBL Hebrew, Script=Hebrew]{SBL Hebrew}#1}}
+\newcommand{\bh}[1]{{{\it\fontspec{Gentium}#1}}}
+
+\newcommand{\C}[1]{{\fontspec{Vesper Pro}\textit{#1}}}
+\newcommand{\Cpar}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}#1}}
+\newcommand{\BHtr}[1]{{\fontspec[HyphenChar=None]{Gentium}\textit{#1}}}
+
+\usepackage{newunicodechar}
+\newunicodechar{ſ}{s}
+\newunicodechar{ꝛ}{r}
