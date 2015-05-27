@@ -1,0 +1,25 @@
+\usepackage[style=authoryear, backend=biber, eventdate=comp, backref=true]{biblatex}
+\bibliography{/home/me/library/bibliography/bibliography}
+\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+\makeatletter
+\newrobustcmd*{\parentexttrack}[1]{%
+	\begingroup
+	\blx@blxinit
+	\blx@setsfcodes
+	\blx@bibopenparen#1\blx@bibcloseparen
+\endgroup}
+\AtEveryCite{%
+	\let\parentext=\parentexttrack%
+	\let\bibopenparen=\bibopenparen%
+\let\bibcloseparen=\bibcloseparen}
+\renewbibmacro*{cite}{%
+	\iffieldundef{shorthand}
+	{\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+		{\usebibmacro{cite:label}%
+		\setunit{\addspace}}
+		{\printnames{labelname}%
+		\setunit{\nameyeardelim}}%
+		% \usebibmacro{cite:labelyear+extrayear}}% DELETED
+	\printtext[parens]{\usebibmacro{cite:labelyear+extrayear}}}% ADDED
+{\usebibmacro{cite:shorthand}}}
+\makeatother

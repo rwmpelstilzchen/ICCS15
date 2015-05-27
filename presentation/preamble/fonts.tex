@@ -1,0 +1,22 @@
+\usepackage{bidi}
+\usepackage{fontspec}
+\setmainfont{Vesper Pro}
+\setsansfont{Vesper Pro}
+%%%\setsansfont{Optima} % No Ŵ/ŵ  FIXME: another font
+%\setsansfont{Gentium Basic}
+%%%\renewcommand{\textsc}[1]{{\fontspec{Palatino Linotype}\scshape#1}}   FIXME: another font
+%\renewcommand{\textsc}[1]{{\fontspec{TeX Gyre Pagella}\scshape#1}}
+\newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
+
+\newcommand{\hl}[1]{\textbf{#1}}
+\newcommand{\BH}[1]{\RL{\fontspec[Script=Hebrew]{SBL Hebrew}#1}}
+\newcommand{\bh}[1]{{{\it\fontspec{Gentium}#1}}}
+
+\newcommand{\Cpar}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}#1}}
+%\renewcommand{\C}[1]{\Cpar{\textit{#1}}}
+\renewcommand{\C}[1]{{\fontspec{Vesper Pro}\textit{#1}}}
+\newcommand{\BHtr}[1]{{\fontspec[HyphenChar=None]{Gentium}\textit{#1}}}
+
+\usepackage{newunicodechar}
+\newunicodechar{ſ}{s}
+\newunicodechar{ꝛ}{r}

@@ -1,38 +1,9 @@
-\documentclass[xetex]{beamer}
-\usepackage[framesassubsections]{beamerprosper} 
+\input{preamble/beamer}
 
-\usepackage{multicol}
+\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, rotating, needspace, multicol, mathtools}
 
-\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, rotating, needspace, multicol}
+\input{preamble/graphics}
 
-%\usepackage{beamerthemesplit}
-
-
-\usepackage{tikz}
-\usetikzlibrary{arrows, decorations.pathmorphing, backgrounds, positioning, fit, petri}
-
-\useoutertheme[width=4em, hideothersubsections]{sidebar}
-%\setbeamerfont{frametitle}{size=\small}
-\usetheme{Berkeley}
-%\usecolortheme{beetle}
-\usecolortheme{seahorse}
-\usecolortheme{sidebartab}
-\setbeamercolor*{structure}{fg=violet}
-\setbeamertemplate{navigation symbols}{}%remove navigation symbols
-\setbeamerfont{section in sidebar}{size=\scriptsize}
-\setbeamerfont{subsection in sidebar}{size=\tiny}
-\setbeamerfont{subsubsection in sidebar}{size=\tiny}
-%\definecolor{beetle@other}{RGB}{64,80,127}
-%\definecolor{beetle@other}{RGB}{32,96,48}
-%\setbeamercolor{alerted text}{fg=red!70!black}
-%%%\setbeamercolor{alerted text}{fg=beetle@other!40!red}
-%\setbeamercolor{subsection in sidebar shaded}{fg=beetle@other}
-\setbeamercolor*{palette sidebar primary}{fg=black}
-%\setbeamercolor{background canvas}{bg=white}
-\usepackage{textpos} 
-\logo{\vspace{0.2cm}\hspace{-0.25cm}\includegraphics[width=2cm]{images/draig.png}}
-
-\usepackage{graphics}
 %\definecolor{colquote}{rgb}{0.8,0.85,1} 
 %\definecolor{colvd}{rgb}{0.8,1,0.8} 
 %\newcommand{\quo}[1]{{\uwave{#1}}}
@@ -45,8 +16,6 @@
 \newcommand{\Chl}[1]{\highlight{#1}}
 \newcommand{\BHhl}[1]{\BHhighlight{#1}}
 
-\usepackage{ulem}
-\normalem
 \usepackage[nooverlap]{ruby}
 \renewcommand{\rubysize}{0.75}
 \newcommand{\gl}[2]{\ruby{#1}{\fontspec{Palatino Linotype}{\addfontfeature{Color=555555FF}\mdseries\upshape#2\,}}}
@@ -54,30 +23,6 @@
 \newcommand{\Hebrew}[1]{{\RL{\fontspec[Script=Hebrew]{Guttman Hodes}#1}}}
 \newcommand{\gram}[1]{{\fontspec{Palatino Linotype}\textsc{#1}}}
 
-
-\usepackage{longtable}
-\newenvironment{bilingquote}[0]%{
-%~\\
-%\vskip-0.5em\begin{parcolumns}[sloppyspaces=true, sloppy=true]{2}}{\end{parcolumns}}
-{\begin{longtable}{p{0.46\linewidth}|p{0.46\linewidth}}}{\end{longtable}}
-
-\newcommand{\transline}[2]{
-%	\begin{savenotes}
-%		\colchunk{\C{#1}}
-%		\colchunk{#2}
-%		\colplacechunks
-%	\end{savenotes}
-%	\vskip0.20em
-{\Cpar{#1}\vspace{0.0em}} &
-{{#2}\vspace{0.5em}}\\
-}
-\newcommand{\cotransline}[2]{\transline{\scriptsize#1}{\scriptsize#2}}
-
-
-\newcommand{\Cpar}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}#1}}
-%\renewcommand{\C}[1]{\Cpar{\textit{#1}}}
-\renewcommand{\C}[1]{\textit{#1}}
-\newcommand{\BHtr}[1]{{\fontspec[HyphenChar=None]{Gentium}\textit{#1}}}
 
 \newcommand{\tounfold}[1]{{\addfontfeature{Color=0000FFFF}\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}~\BH{#1}~\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}}}
 
@@ -103,88 +48,15 @@
 \newcommand{\Aplus}{\mbox{\pA{$+$}}}
 \newcommand{\Aminus}{\mbox{\pA{$-$}}}
 
-
-
-
-\newcommand{\llyfr}[1] {%
-	\ifthenelse{\equal{#1}{1}}{Genesis}{%
-	\ifthenelse{\equal{#1}{2}}{Exodus}{%
-	\ifthenelse{\equal{#1}{3}}{Leviticus}{%
-	\ifthenelse{\equal{#1}{4}}{Numbers}{%
-	\ifthenelse{\equal{#1}{5}}{Deuteronomy}{#1}}}}}%
-}
+\newcommand{\llyfr}[1] {#1}
 %\newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}\marginnote{\setstretch{0.75}\begin{tabular}{c}\llyfr{1}~#2:#3\\עמ'~\pageref{verse:#1:#2:#3:#4}\end{tabular}}}
 \newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}}
 \newcommand{\xvref}[4]{***} % references for yet to be written exx
 \newcommand{\secref}[1]{\mbox{\LR{{\fontspec{SBL Hebrew}§}\LR{\ref{#1}}}}}
 \newcommand{\sic}{\ {(\textit{sic})}}
 
+\input{preamble/examples}
+\input{preamble/bibliography}
+\input{preamble/fonts}
 
-\newcounter{exampleno}
-\setcounter{exampleno}{0}
-\newcommand{\ex}{\stepcounter{exampleno}\textbf{Ex.~\arabic{exampleno}}: }
-\newcommand{\exast}{\stepcounter{exampleno}\arabic{exampleno}}
-\newcommand{\exgoback}{\addtocounter{exampleno}{-1}}
-\newcommand{\exphantom}{\stepcounter{exampleno}}
-
-\renewenvironment{example}[5] % #1=book, #2=chapter, #3=verse, #4=copy (of the same verse; different copies have different hightlighting), #5=shift (of verse number)
-	{
-	\framesubtitle{\llyfr{#1} #2:#3\ifthenelse{\not\equal{#5}{}}{*}{}}
-	}
-	{
-	}
-
-\newcommand{\hl}[1]{\textbf{#1}}
-\newcommand{\BH}[1]{\RL{\fontspec[Script=Hebrew]{SBL Hebrew}#1}}
-\newcommand{\bh}[1]{{{\it\fontspec{Gentium}#1}}}
-\newcommand{\quoling}[4]% Cymraeg, Hebrew (Latin transcription), KJV, Hebrew (Tiberean)
-{
-\begin{bilingquote}
-%	\transline{\C{#1}}{\fontspec{Gentium}#2}
-%	\transline{\setLR{#3}}{\setRL{\BH{#4}}}
-	\transline{{\fontspec[HyphenChar=None]{Junicode}#1}}{\fontspec[HyphenChar=None]{Gentium}#3}\\
-	\transline{{\small\fontspec{Gentium}#4}}{\vspace{-0.9em}\begin{RTL}{\BH{\small#2}}\end{RTL}}
-\end{bilingquote}
-}
-
-
-\usepackage{fontspec}
-\setmainfont{Vesper Pro}
-\setsansfont{Vesper Pro}
-%%%\setsansfont{Optima} % No Ŵ/ŵ  FIXME: another font
-%\setsansfont{Gentium Basic}
-%%%\renewcommand{\textsc}[1]{{\fontspec{Palatino Linotype}\scshape#1}}   FIXME: another font
-%\renewcommand{\textsc}[1]{{\fontspec{TeX Gyre Pagella}\scshape#1}}
-\newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
-
-\usepackage[style=authoryear, backend=biber, eventdate=comp, backref=true]{biblatex}
-\bibliography{/home/me/library/bibliography/bibliography}
-\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
-\makeatletter
-\newrobustcmd*{\parentexttrack}[1]{%
-	\begingroup
-	\blx@blxinit
-	\blx@setsfcodes
-	\blx@bibopenparen#1\blx@bibcloseparen
-\endgroup}
-\AtEveryCite{%
-	\let\parentext=\parentexttrack%
-	\let\bibopenparen=\bibopenparen%
-\let\bibcloseparen=\bibcloseparen}
-\renewbibmacro*{cite}{%
-	\iffieldundef{shorthand}
-	{\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
-		{\usebibmacro{cite:label}%
-		\setunit{\addspace}}
-		{\printnames{labelname}%
-		\setunit{\nameyeardelim}}%
-		% \usebibmacro{cite:labelyear+extrayear}}% DELETED
-	\printtext[parens]{\usebibmacro{cite:labelyear+extrayear}}}% ADDED
-{\usebibmacro{cite:shorthand}}}
-\makeatother
-
-\usepackage{bidi}
-
-
-\setlength\fboxsep{0pt}
-\setlength\fboxrule{1.5pt}
+\newcommand{\mtext}[1]{\text{\LR{#1}}}

@@ -131,9 +131,9 @@
 	{\begin{longtable}{p{0.46\linewidth}p{0.46\linewidth}}}
 	{\end{longtable}}
 
-	\newcommand{\Lcol}[1]{{\setLR{\vskip-2em}\C{%
-	%\addfontfeature{HyphenChar="2E17}%ADDME WHEN PRINTING***
-	#1}}}
+\newcommand{\Lcol}[1]{{\setLR{\vskip-2em}\C{%
+			%\addfontfeature{HyphenChar="2E17}%ADDME WHEN PRINTING***
+			#1}}}
 \newcommand{\Rcol}[1]{{\setRL{\vskip-2em}\BH{#1}}}
 \newcommand{\transline}[2]
 %	{{\Lcol{#1}\vspace{0.0em}} &
@@ -220,16 +220,10 @@
 \makeatother
 
 \input{preamble/graphics}
+\input{preamble/examples}
 \input{preamble/title-before-bidi}
 \input{preamble/language}
 \input{preamble/title-after-bidi}
 
-\usepackage[normalem]{ulem}
-\newcommand{\lhl}[1]{\fbox{#1}}
-%\def\reduline{\bgroup \markoverwith{\lower3.5\p@\hbox{\footnotesize{}.}}\ULon}
-\newcommand{\mydotuline}{\bgroup \markoverwith{\lower 1.0ex\hbox{.}}\ULon}
-\newcommand{\hlA}[1]{\underline{#1}}
-\newcommand{\hlB}[1]{\mydotuline{#1}}
-\newcommand{\hlC}[1]{\dashuline{#1}}
 
 \newcommand{\tounfold}[1]{{\addfontfeature{Color=0000FFFF}\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}~\BH{#1}~\symbolglyph{\addfontfeature{Color=0000FFFF}⛭}}}

@@ -1,0 +1,52 @@
+\usepackage[normalem]{ulem}
+\setlength{\fboxsep}{0.5ex}
+\setlength\fboxrule{0.25ex}
+\newcommand{\lhl}[1]{\fbox{#1}}
+%\def\reduline{\bgroup \markoverwith{\lower3.5\p@\hbox{\footnotesize{}.}}\ULon}
+\newcommand{\mydotuline}{\bgroup \markoverwith{\lower 1.0ex\hbox{.}}\ULon}
+\newcommand{\hlA}[1]{\underline{#1}}
+\newcommand{\hlB}[1]{\mydotuline{#1}}
+\newcommand{\hlC}[1]{\dashuline{#1}}
+
+\newcounter{exampleno}
+\setcounter{exampleno}{0}
+\newcommand{\ex}{\stepcounter{exampleno}\textbf{Ex.~\arabic{exampleno}}: }
+\newcommand{\excont}{\textbf{Ex.~\arabic{exampleno}}: }
+\newcommand{\exast}{\stepcounter{exampleno}\arabic{exampleno}}
+\newcommand{\exgoback}{\addtocounter{exampleno}{-1}}
+\newcommand{\exphantom}{\stepcounter{exampleno}}
+
+\renewenvironment{example}[5] % #1=book, #2=chapter, #3=verse, #4=copy (of the same verse; different copies have different hightlighting), #5=shift (of verse number)
+	{
+	\framesubtitle{\llyfr{#1} #2:#3\ifthenelse{\not\equal{#5}{}}{*}{}}
+	}
+	{
+	}
+
+\newcommand{\transline}[2]{
+%	\begin{savenotes}
+%		\colchunk{\C{#1}}
+%		\colchunk{#2}
+%		\colplacechunks
+%	\end{savenotes}
+%	\vskip0.20em
+{\Cpar{#1}\vspace{0.0em}} &
+{{#2}\vspace{0.5em}}\\
+}
+\newcommand{\cotransline}[2]{\transline{\scriptsize#1}{\scriptsize#2}}
+
+\usepackage{longtable}
+\newenvironment{bilingquote}[0]%
+{\begin{longtable}{p{0.46\linewidth}|p{0.46\linewidth}}}%
+{\end{longtable}}
+
+
+\newcommand{\quoling}[4]% Cymraeg, Hebrew (Latin transcription), KJV, Hebrew (Tiberean)
+{
+	\begin{tabular}{p{0.46\linewidth}!{\color{gray}\vrule}p{0.46\linewidth}}
+		{#2} &
+		{\fontspec[HyphenChar=None]{Gentium}#3}\\\\
+		{{\small #4}} &
+		{\begin{RTL}{\BH{\small#1}}\end{RTL}}
+	\end{tabular}
+}
