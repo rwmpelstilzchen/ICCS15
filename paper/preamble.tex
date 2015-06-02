@@ -1,7 +1,7 @@
 \documentclass[a5paper, twoside]{article}
 \usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm]{geometry}
 
-\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, marginnote, rotating, needspace, titletoc, enumerate, multicol}
+\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, marginnote, rotating, needspace, titletoc, enumerate, multicol, environ, paralist}
 
 \renewcommand{\textsc}[1]{{\fontspec{TeX Gyre Pagella}\scshape#1}}
 \newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
@@ -36,7 +36,7 @@
 \renewcommand{\rubysize}{0.75}
 %\renewcommand{\rubysep}{-1cm}
 %\renewcommand{\rubysep}{-0.9cm}
-\renewcommand{\ruby}[2]{#1}
+%\renewcommand{\ruby}[2]{#1}
 
 %\newcommand{\gl}[2]{\ruby{#1}{\fontspec{Gill Sans Light}\mdseries\upshape #2\,}}
 \newcommand{\gl}[2]{#1}
@@ -148,13 +148,6 @@
 %\end{bilingquote}
 }
 
-
-\newcounter{pointno}
-\setcounter{pointno}{1}
-%\reversemarginpar
-\renewcommand*{\raggedleftmarginnote}{\raggedleft}
-\newcommand{\hopoint}{\marginnote{\ovalbox{\Roman{pointno}}}\stepcounter{pointno}}
-
 \newenvironment{changemargin}[2]{%
  \begin{list}{}{%
   \setlength{\topsep}{0pt}%
@@ -221,6 +214,7 @@
 
 \input{preamble/graphics}
 \input{preamble/examples}
+\input{preamble/points}
 \input{preamble/title-before-bidi}
 \input{preamble/language}
 \input{preamble/title-after-bidi}

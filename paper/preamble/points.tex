@@ -1,0 +1,5 @@
+\newcounter{pointno}
+\setcounter{pointno}{1}
+\reversemarginpar
+\renewcommand*{\raggedleftmarginnote}{\raggedleft}
+\NewEnviron{hopoint}{\marginnote{\ovalbox{\Alph{pointno}}}\stepcounter{pointno}\BODY}
