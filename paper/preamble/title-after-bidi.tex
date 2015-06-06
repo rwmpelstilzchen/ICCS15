@@ -9,5 +9,8 @@
 \titleformat{\paragraph}{\needspace{2\baselineskip}\sectionfont\bfseries\small\color{darkfaded}}{\textbf{\theparagraph}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
 \titleformat{\subparagraph}{\needspace{2\baselineskip}\sectionfont\bfseries\small\color{darkfaded}}{\textbf{\thesubparagraph}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
 
-\newcommand{\subsubsectionoccurances}[2]{\subsubsection[#1]{#1\hfill\faded (#2 occurances)}}
-\newcommand{\paragraphoccurances}[2]{\paragraph[#1]{#1\hfill\faded (#2 occurances)}}
+\newcommand{\subsubsectiontext}[2]{\subsubsection[#1]{#1\hfill\faded (#2)}}
+\newcommand{\paragraphtext}[2]{\paragraph[#1]{#1\hfill\faded (#2)}}
+
+\newcommand{\subsubsectionoccurances}[2]{\subsubsectiontext{#1}{#2 occurances}}
+\newcommand{\paragraphoccurances}[2]{\paragraphtext{#1}{#2 occurances}}
