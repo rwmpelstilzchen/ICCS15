@@ -4,7 +4,7 @@
 \newcommand{\lhl}[1]{\fbox{#1}}
 %\def\reduline{\bgroup \markoverwith{\lower3.5\p@\hbox{\footnotesize{}.}}\ULon}
 \newcommand{\mydotuline}{\bgroup \markoverwith{\lower 1.0ex\hbox{.}}\ULon}
-\newcommand{\hlA}[1]{\underline{#1}}
+\newcommand{\hlA}[1]{\underline{\textbf{#1}}}
 \newcommand{\hlB}[1]{\mydotuline{#1}}
 \newcommand{\hlC}[1]{\dashuline{#1}}
 
@@ -45,7 +45,7 @@
 {
 	\begin{tabular}{p{0.46\linewidth}!{\color{gray}\vrule}p{0.46\linewidth}}
 		{#2} &
-		{\fontspec{Gentium}#3}\\\\
+		{\fontspec[AutoFakeBold=3]{Gentium}#3}\\\\
 		{{\small #4}} &
 		{\begin{RTL}{\BH{\small#1}}\end{RTL}}
 	\end{tabular}

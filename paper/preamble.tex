@@ -87,67 +87,6 @@
 \newcommand{\sic}{\ {(\textit{sic})}}
 \newcommand{\bcite}[3]{\llyfr{#1}~#2:#3}
 
-%%% Examples %%%
-%\edef\marginnotetextwidth{1cm}
-\newcounter{exampleno}
-\setcounter{exampleno}{0}
-\newenvironment{bareexample}[1] {
-	%\begin{changemargin}{3.0cm}{0cm}
-	\needspace{12\baselineskip}\refstepcounter{exampleno}
-		%\ifthenelse{\isodd{\thepage}}
-		%	{\marginnote{\begin{tabular}{ll}\framebox{\arabic{exampleno}}&#1\end{tabular}}[-0.6em]}
-		%	{\marginnote{\begin{tabular}{ll}#1&\framebox{\arabic{exampleno}}\end{tabular}}[-0.6em]}
-		{\marginnote{\small\centering\framebox{\arabic{exampleno}}\\[0.20cm]#1}[0.6em]}
-	}
-	{
-	%\end{changemargin}
-	}
-
-\newenvironment{example}[5] % #1=book, #2=chapter, #3=verse, #4=copy (of the same verse; different copies have different hightlighting), #5=shift (of verse number)
-	{
-	\setstretch{0.51}
-	\vspace{1em}
-	\begin{bareexample}
-		{{
-			{
-			\setstretch{0.75}
-			{\llyfr{#1}}\\
-			\LR{{#2}{:}%
-			{#3}}%
-%			\ifthenelse{\not\equal{#4}{}}{{\small .#4}}{}%
-			\ifthenelse{\not\equal{#5}{}}{*}{}
-			}
-			}}\label{verse:#1:#2:#3:#4}
-		\begin{longtable}{p{0.46\linewidth}p{0.46\linewidth}}
-	}
-	{
-		\end{longtable}
-		\end{bareexample}
-		\vspace{-1em}
-	}
-\newcommand{\explain}{\noindent$\rightarrow$\ }
-
-\newenvironment{bilingquote}[0]
-	{\begin{longtable}{p{0.46\linewidth}p{0.46\linewidth}}}
-	{\end{longtable}}
-
-\newcommand{\Lcol}[1]{{\setLR{\vskip-2em}\C{%
-			%\addfontfeature{HyphenChar="2E17}%ADDME WHEN PRINTING***
-			#1}}}
-\newcommand{\Rcol}[1]{{\setRL{\vskip-2em}\BH{#1}}}
-\newcommand{\transline}[2]
-%	{{\Lcol{#1}\vspace{0.0em}} &
-%	{{\Rcol{#2}}\vspace{0.0em}}\\}
-	{#1 & #2\\}
-\newcommand{\cotransline}[2]{\transline{\scriptsize#1}{\scriptsize#2}}
-\newcommand{\quoling}[4]% Hebrew (Tiberean), Cymraeg, Hebrew (Latin transcription), KJV
-{
-%\begin{bilingquote}
-	\transline{{\fontspec[HyphenChar=None]{Vesper Pro}#2}}{\fontspec[HyphenChar=None]{Gentium}#3}\\
-	\transline{{\small#4}}{\vspace{-0.9em}\begin{RTL}{\BH{\small#1}}\end{RTL}}
-%\end{bilingquote}
-}
-
 \newenvironment{changemargin}[2]{%
  \begin{list}{}{%
   \setlength{\topsep}{0pt}%
