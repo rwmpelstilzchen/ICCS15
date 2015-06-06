@@ -5,5 +5,9 @@
 \titleformat{\section}{\sectionfont\bfseries\Large\color{darkfaded}}{\textbf{\thesection}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}\vskip2pt\titleline{\color{faded}\titlerule}]
 \titleformat{\subsection}{\sectionfont\bfseries\large\color{darkfaded}}{\textbf{\thesubsection}\sectionornament}{0.0cm}{}[{\titleline{\color{faded}\titlerule}}]
 \titleformat{\subsubsection}{\sectionfont\bfseries\normalsize\color{darkfaded}}{\textbf{\thesubsubsection}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
+\titleformat{\subsubsection}{\sectionfont\bfseries\normalsize\color{darkfaded}}{\textbf{\thesubsubsection}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
+\titleformat{\paragraph}{\needspace{2\baselineskip}\sectionfont\bfseries\small\color{darkfaded}}{\textbf{\theparagraph}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
+\titleformat{\subparagraph}{\needspace{2\baselineskip}\sectionfont\bfseries\small\color{darkfaded}}{\textbf{\thesubparagraph}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
 
 \newcommand{\subsubsectionoccurances}[2]{\subsubsection[#1]{#1\hfill\faded (#2 occurances)}}
+\newcommand{\paragraphoccurances}[2]{\paragraph[#1]{#1\hfill\faded (#2 occurances)}}
