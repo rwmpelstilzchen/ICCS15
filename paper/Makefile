@@ -1,5 +1,5 @@
 all:
-	-./qåmaṣ-fix.sh
+	-#./qåmaṣ-fix.sh
 	latexmk -xelatex -file-line-error paper
 
 pvc:
