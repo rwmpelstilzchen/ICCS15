@@ -7,18 +7,26 @@
 \newcommand{\hlA}[1]{\underline{\textbf{#1}}}
 \newcommand{\hlB}[1]{\mydotuline{#1}}
 \newcommand{\hlC}[1]{\dashuline{#1}}
+\newcommand{\kjvit}[1]{\emph{#1}}
+
+\newcommand{\typo}[1]{\superscript{(#1)}}
 
 \newcounter{exampleno}
 \setcounter{exampleno}{0}
-\newcommand{\ex}{\stepcounter{exampleno}\textbf{Ex.~\arabic{exampleno}}: }
+\newcommand{\ex}{\refstepcounter{exampleno}\textbf{Ex.~\arabic{exampleno}}: }
 \newcommand{\excont}{\textbf{Ex.~\arabic{exampleno}}: }
+
+% an ugly workaround
+\newcommand{\exwref}{\excont}
+\newcommand{\exstep}{\stepcounter{exampleno}}
+
 \newcommand{\exast}{\stepcounter{exampleno}\arabic{exampleno}}
 \newcommand{\exgoback}{\addtocounter{exampleno}{-1}}
 \newcommand{\exphantom}{\stepcounter{exampleno}}
 
 \renewenvironment{example}[5] % #1=book, #2=chapter, #3=verse, #4=copy (of the same verse; different copies have different hightlighting), #5=shift (of verse number)
 	{
-	\framesubtitle{\llyfr{#1} #2:#3\ifthenelse{\not\equal{#5}{}}{*}{}}
+		\framesubtitle{\llyfr{#1} #2:#3\ifthenelse{\not\equal{#5}{}}{*}{}}\refcounter{exampleno}\label{verse:#1:#2:#3:#4}
 	}
 	{
 	}
@@ -50,3 +58,6 @@
 		{\begin{RTL}{\BH{\small#1}}\end{RTL}}
 	\end{tabular}
 }
+
+\newcommand{\vref}[4]{{\addfontfeature{Numbers=Monospaced}\ref{verse:#1:#2:#3:#4}}}
+\newcommand{\exvref}[4]{ex.~\vref{#1}{#2}{#3}{#4}}

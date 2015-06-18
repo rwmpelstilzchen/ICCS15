@@ -59,6 +59,11 @@
 %\end{bilingquote}
 }
 
+\newcommand{\llyfr}[1]{\textsc{#1}}
+%\newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}\marginnote{\setstretch{0.75}\begin{tabular}{c}\llyfr{1}~#2:#3\\עמ'~\pageref{verse:#1:#2:#3:#4}\end{tabular}}}
+\newcommand{\vref}[4]{\ref{verse:#1:#2:#3:#4}}
+\newcommand{\xvref}[4]{***} % references for yet to be written exx
+\newcommand{\exvref}[4]{ex.~\vref{#1}{#2}{#3}{#4}}
 
 \usepackage[normalem]{ulem}
 \newcommand{\lhl}[1]{\fbox{#1}}
