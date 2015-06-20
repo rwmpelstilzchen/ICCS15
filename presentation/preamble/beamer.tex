@@ -1,10 +1,27 @@
-\documentclass[xetex]{beamer}
+\documentclass[xetex, compress]{beamer}
 \usepackage[framesassubsections]{beamerprosper}
 
 \useoutertheme[width=4em, hideothersubsections]{sidebar}
+
+% http://tex.stackexchange.com/questions/89885/
+\makeatletter
+  \setbeamertemplate{sidebar \beamer@sidebarside}%{sidebar theme}
+  {
+    \beamer@tempdim=\beamer@sidebarwidth%
+    \advance\beamer@tempdim by -6pt%
+    \insertverticalnavigation{\beamer@sidebarwidth}%
+    \vfill
+    \ifx\beamer@sidebarside\beamer@lefttext%
+    \else%
+      \usebeamercolor{normal text}%
+      \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+      \vskip2pt%
+    \fi%
+}%
+\makeatother
+
 %\setbeamerfont{frametitle}{size=\small}
 \usetheme{Berkeley}
-%\usecolortheme{beetle}
 \usecolortheme{seahorse}
 \usecolortheme{sidebartab}
 \setbeamercolor*{structure}{fg=violet}
@@ -20,4 +37,4 @@
 \setbeamercolor*{palette sidebar primary}{fg=black}
 %\setbeamercolor{background canvas}{bg=white}
 \usepackage{textpos}
-\logo{\vspace{0.2cm}\hspace{-0.25cm}\includegraphics[width=2cm]{images/draig.png}}
+\logo{\vspace{0.2cm}\hspace{-0.10cm}\includegraphics[width=2cm]{images/draig.png}}
