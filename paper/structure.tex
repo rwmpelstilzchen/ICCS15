@@ -1,27 +1,17 @@
-\def\contentsname{Structure}
-\tounfold{לעשות שהתת־תת־סעיפים יהיו ב־\L{inline}.}
-\renewcommand{\contentspage}{}
-{\setstretch{0.1}
-\setlength\parskip{\smallskipamount}
+\section*{Structure}
 
-\titlecontents{section} 
-	[1.5cm] 
-	{}
-	{\LR{\contentslabel{1cm}}} 
-	{}
-	{\hfill\contentspage}
-\titlecontents{subsection} 
-	[2.0cm] 
-	{}
-	{\LR{\contentslabel{1cm}}} 
-	{} 
-	{\hfill\contentspage}
-\titlecontents{subsubsection} 
-	[2.5cm] 
-	{}
-	{\LR{\contentslabel{1cm}}} 
-	{} 
-	{\hfill\contentspage}
+\newboolean{firstsubsub}
+\makeatletter
+\renewcommand{\tableofcontents}{\noindent\@starttoc{toc}}
+\renewcommand{\l@section}[2]{\par\textbf{#1}\setboolean{firstsubsub}{true}}
+\renewcommand{\l@subsection}[2]{\par
+	\hangindent=15pt
+	\hangafter=1
+	\textit{#1}\quad\setboolean{firstsubsub}{true}}
+\renewcommand{\l@subsubsection}[2]{\unskip\ \ifthenelse{\boolean{firstsubsub}}{}{~\symbolglyph{\scriptsize ❯}~} #1\setboolean{firstsubsub}{false}}
+\renewcommand{\l@paragraph}[2]{\unskip}
+\renewcommand{\l@subparagraph}[2]{\unskip}
+\renewcommand{\numberline}[1]{{#1}.~}
+\makeatother
 
-	\tableofcontents
-}
+\tableofcontents
