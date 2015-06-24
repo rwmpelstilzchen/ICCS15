@@ -9,11 +9,28 @@
 \titleformat{\paragraph}{\needspace{4\baselineskip}\sectionfont\bfseries\small\color{darkfaded}}{\textbf{\theparagraph}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
 \titleformat{\subparagraph}{\needspace{4\baselineskip}\sectionfont\bfseries\small\color{darkfaded}}{\textbf{\thesubparagraph}\sectionornament}{0.0cm}{}[\titleline{\color{faded}\titlerule}]
 
-\newcommand{\subsubsectiontext}[2]{\subsubsection[#1]{#1\hfill\faded (#2)}}
-\newcommand{\paragraphtext}[2]{\paragraph[#1]{#1\hfill\faded (#2)}}
-\newcommand{\subparagraphtext}[2]{\subparagraph[#1]{#1\hfill\faded (#2)}}
 
-% @@@ TODO: להוסיף משתנה אופציונלי
-\newcommand{\subsubsectionoccurances}[2]{\subsubsectiontext{#1}{#2 occurances}}
-\newcommand{\paragraphoccurances}[2]{\paragraphtext{#1}{#2 occurances}}
-\newcommand{\subparagraphoccurances}[2]{\subparagraphtext{#1}{#2 occurances}}
+\usepackage{xparse}
+
+\DeclareDocumentCommand \subsubsectiontext{o mm} {%
+	\IfNoValueTF {#1}
+	{\subsubsection[#2]{#2\hfill\faded (#3)}}
+	{\subsubsection[#1]{#2\hfill\faded (#3)}}
+}
+\DeclareDocumentCommand \paragraphtext{o mm} {%
+	\IfNoValueTF {#1}
+	{\paragraph[#2]{#2\hfill\faded (#3)}}
+	{\paragraph[#1]{#2\hfill\faded (#3)}}
+}
+\DeclareDocumentCommand \subparagraphtext{o mm} {%
+	\IfNoValueTF {#1}
+	{\subparagraph[#2]{#2\hfill\faded (#3)}}
+	{\subparagraph[#1]{#2\hfill\faded (#3)}}
+}
+
+\DeclareDocumentCommand\subsubsectionoccurances{omm}
+	{\subsubsectiontext[#1]{#2}{#3 occurances}}
+\DeclareDocumentCommand\paragraphoccurances{omm}
+	{\paragraphtext[#1]{#2}{#3 occurances}}
+\DeclareDocumentCommand\subparagraphoccurances{omm}
+	{\subparagraphtext[#1]{#2}{#3 occurances}}

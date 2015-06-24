@@ -1,7 +1,8 @@
 \documentclass[a5paper, twoside]{article}
 \usepackage[top=2.0cm,bottom=2.0cm,left=2.0cm,right=2.0cm]{geometry}
 
-\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, marginnote, rotating, needspace, titletoc, enumerate, multicol, environ, paralist}
+\usepackage{microtype}
+\usepackage{setspace, multirow, xltxtra, longtable, ltxtable, amsmath, fancybox, marginnote, rotating, needspace, titletoc, enumerate, multicol, environ, paralist, tabu, paracol, parallel}
 
 \renewcommand{\textsc}[1]{{\fontspec{TeX Gyre Pagella}\scshape#1}}
 \newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
@@ -19,8 +20,9 @@
 \setlength\parskip{\medskipamount}
 \setlength\parindent{0pt}
 
-\IfFileExists{url.sty}{\usepackage{url}}
-{\newcommand{\url}{\texttt}}
+\usepackage[hidelinks]{hyperref}
+%\IfFileExists{url.sty}{\usepackage{url}}
+%{\newcommand{\url}{\texttt}}
 
 \newcommand{\zero}{{\fontspec{Apple Symbols}∅}}
 
@@ -101,7 +103,6 @@
 
 \newcommand{\paradigma}[1]{\begin{tabular}{|c|}#1\end{tabular}}
 
-\newcommand{\shama}{{\fontspec[HyphenChar=None]{Gentium}\textit{{šå̄maʿ}}}}
 \newcommand{\YHWH}{{\fontspec[HyphenChar=None]{Gentium}\textsc{{yhwh}}}}
 \newcommand{\LORD}{{\textsc{\mbox{lord}}}}
 \newcommand{\click}{{\fontspec{FreeSerif}✴}}

@@ -11,9 +11,8 @@
 \newcommand{\BH}[1]{\RL{\fontspec[Script=Hebrew, AutoFakeBold=3]{SBL Hebrew}#1}}
 \newcommand{\bh}[1]{{\fontspec[AutoFakeBold=3, Mapping=ehll]{Gentium Italic}#1}}
 
-\newcommand{\C}[1]{{\fontspec{Vesper Pro}\textit{#1}}}
-\newcommand{\Cpar}[1]{{\fontspec[Language=Welsh,SmallCapsFont={LMRoman10 Caps}, HyphenChar=None]{Gentium Basic}#1}}
-\newcommand{\BHtr}[1]{{\fontspec[HyphenChar=None]{Gentium}\textit{#1}}}
+\renewcommand{\C}[1]{{\fontspec[Language=Welsh]{Vesper Pro}\textit{#1}}}
+\newcommand{\Cpar}[1]{{\fontspec[Language=Welsh, HyphenChar=None]{Vesper Pro}#1}}
 
 \usepackage{newunicodechar}
 \newunicodechar{ſ}{s}
