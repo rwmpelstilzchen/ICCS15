@@ -1,7 +1,0 @@
-LHSName "old"
-RHSName "new"
-
-pass(Unicode)
-
-U+00E5 U+0304 <> U+00E5 ; ‘å̄’→‘å’
-U+014D <> U+006F ; ‘ō’→‘o’
