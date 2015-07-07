@@ -8,8 +8,8 @@
 \newcommand{\textscbf}[1]{\textsc{\textbf{#1}}}
 
 \usepackage{comment, framed}
-\specialcomment{paper}{\begin{leftbar}}{\end{leftbar}}
-%\excludecomment{paper}
+%\specialcomment{paper}{\begin{leftbar}}{\end{leftbar}}
+\excludecomment{paper}
 \specialcomment{extra}{\fontsize{8}{8}\fontspec{Gentium Basic}}{\fontsize{10}{10}\fontspec{Gentium Basic}}
 
 %\hyphenpenalty=5000
@@ -109,7 +109,12 @@
 \newcommand{\point}[1]{[\textit{#1}]}
 \newcommand{\optout}[1]{{\small [{#1}]}}
 
-
+\newcommand{\typeA}{\textsc{type~a}}
+\newcommand{\typeB}{\textsc{type~b}}
+\newcommand{\typeC}{\textsc{type~c}}
+\newcommand{\typeAsec}{ {\small\darkfaded(\typeA)}}
+\newcommand{\typeBsec}{ {\small\darkfaded(\typeB)}}
+\newcommand{\typeCsec}{ {\small\darkfaded(\typeC)}}
 
 \usepackage[style=authoryear, backend=biber, eventdate=comp]{biblatex}
 \bibliography{/home/me/library/bibliography/bibliography}
